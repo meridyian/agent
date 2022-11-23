@@ -7,22 +7,24 @@ public class agents : MonoBehaviour
 {
     //component türünde bir obje oluşturman lazım
     NavMeshAgent agent;
-    public GameObject target;
-    public GameObject target2;
-    private string currenttarget;
+   
+
+    public GameObject[] targets;
+    private int currenttarget;
+
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        currenttarget = "target";
-        agent.SetDestination(target.transform.position);
+        currenttarget = 0;
+        agent.SetDestination(targets[0].transform.position);
         
     }
 
     
     void Update()
     {
-        agent.SetDestination(target.transform.position);
+        
     }
 
     //etkileşime girildiğinde hedef 1 e çarptıysa yeni hedef hedef2 olsun, hedef2 ye çarptıysa 2 olsun
@@ -30,18 +32,18 @@ public class agents : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(currenttarget=="target")
+        if(currenttarget==0)
         {
-            currenttarget = "target2";
-            agent.SetDestination(target2.transform.position);
+            currenttarget = 1;
+            agent.SetDestination(targets[currenttarget].transform.position);
 
         }
 
 
         else
         {
-            currenttarget = "target";
-            agent.SetDestination(target.transform.position);
+            currenttarget = 0;
+            agent.SetDestination(targets[currenttarget].transform.position);
         }
 
     }
