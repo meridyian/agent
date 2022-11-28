@@ -7,17 +7,14 @@ public class agents : MonoBehaviour
 {
     //component türünde bir obje oluşturman lazım
     NavMeshAgent agent;
-   
 
-    public GameObject[] targets;
-    private int currenttarget;
+    public GameObject target;
 
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        currenttarget = 0;
-        agent.SetDestination(targets[0].transform.position);
+        agent.SetDestination(target.transform.position);
         
     }
 
